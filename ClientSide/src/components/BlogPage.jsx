@@ -14,7 +14,8 @@ const BlogPage = () => {
 
   useEffect(() => {
     async function fetchBlogs() {
-      let url = `http://localhost:5000/blogs?page=${currentPage}&limit=${pagesize}`;
+      let url = `let url = `https://blogs-display-client-side-server-side-g56v.vercel.app/api/blogs?page=${currentPage}&pagesize=${pagesize}`;
+`;
   
       if (selectedCategory) {
         url += `&category=${selectedCategory}`;
