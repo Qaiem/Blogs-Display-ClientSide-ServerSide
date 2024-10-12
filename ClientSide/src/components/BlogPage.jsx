@@ -14,7 +14,7 @@ const BlogPage = () => {
 
   useEffect(() => {
     async function fetchBlogs() {
-      let url =  `https://blogs-display-client-side-server-side-g56v.vercel.app/api/blogs?page=${currentPage}&pagesize=${pagesize}`;
+      let url = `https://blogs-display-client-side-server-side-g56v.vercel.app/api/blogs?page=${currentPage}&pagesize=${pagesize}`;
   
       if (selectedCategory) {
         url += `&category=${selectedCategory}`;
@@ -27,7 +27,10 @@ const BlogPage = () => {
         }
         const data = await response.json();
         console.log("Fetched blogs:", data); // Log the fetched data
-        setBlogs(data);
+        
+        // Adjust based on your API response structure
+        setBlogs(data.blogs || []);  // Use 'data.blogs' if your API response has a 'blogs' field
+        setTotalBlogs(data.total || 0); // Use the correct field for total number of blogs
       } catch (error) {
         console.error('Failed to fetch blogs:', error);
       }
@@ -36,7 +39,6 @@ const BlogPage = () => {
     fetchBlogs(); // Call the function to fetch blogs
   }, [currentPage, pagesize, selectedCategory]);
   
-
   // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -53,16 +55,20 @@ const BlogPage = () => {
     <div>
       {/* Category Section */}
       <div>
-        <CategorySelection onSelectCategory={handleCategoryChange} selectedCategory={selectedCategory} activeCategory={activeCategory}/>
+        <CategorySelection onSelectCategory={handleCategoryChange} selectedCategory={selectedCategory} activeCategory={activeCategory} />
       </div>
 
       {/* Blog Cards Section */}
       <div className="flex flex-col lg:flex-row gap-12">
-        <BlogCards blogs={blogs} currentPage={currentPage} selectedCategory={selectedCategory} pagesize={pagesize} />
+        {blogs.length === 0 ? (
+          <p>No blogs available.</p>
+        ) : (
+          <BlogCards blogs={blogs} currentPage={currentPage} selectedCategory={selectedCategory} pagesize={pagesize} />
+        )}
 
-        {/* {Side bar Section} */}
-        <div className=""> 
-            <Sidebars />
+        {/* Side bar Section */}
+        <div>
+          <Sidebars />
         </div>
       </div>
 
