@@ -1,4 +1,5 @@
-import React from 'react';
+// import React from 'react';
+import PropTypes from 'prop-types';
 
 const CategorySelection = ({ onSelectCategory, activeCategory }) => {
   const categories = ["Startups", "Security", "Apps", "AI", "Tech"];
@@ -36,5 +37,10 @@ const CategorySelection = ({ onSelectCategory, activeCategory }) => {
     </div>
   );
 };
+CategorySelection.propTypes = {
+  onSelectCategory: PropTypes.func.isRequired,
+  activeCategory: PropTypes.string,
+};
 
 export default CategorySelection;
+// export default CategorySelection;

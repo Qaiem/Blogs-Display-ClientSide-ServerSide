@@ -1,10 +1,14 @@
-import React from "react";
 import { FaClock, FaUser } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
 import Sidebars from "../components/Sidebars";
 
 const SingleBlogs = () => {
   const data = useLoaderData();
+  // console.log("Loaded Blog Data:", data);
+  // console.log("Type of data:", typeof data);
+  // console.log("Is data an array?", Array.isArray(data));
+  // console.log("First item in data:", data?.[0]);
+
   const {
     image,
     category,
@@ -13,7 +17,7 @@ const SingleBlogs = () => {
     reading_time,
     content,
     title,
-  } = data[0];
+  } = data;
 
   return (
     <div className="container mx-auto my-8 p-4 sm:p-6 lg:p-8 bg-white shadow-lg rounded">
@@ -34,9 +38,10 @@ const SingleBlogs = () => {
             {title}
           </h1>
           <p className="text-gray-600 mb-2 flex items-center justify-center lg:justify-start text-xs sm:text-sm md:text-base lg:text-lg">
-            <FaUser className="mr-1 text-xs sm:text-sm md:text-base lg:text-lg" /> {author} on{" "}
-            {new Date(published_date).toLocaleDateString()} |{" "}
-            <FaClock className="mx-1 text-xs sm:text-sm md:text-base lg:text-lg" /> {reading_time} read
+            <FaUser className="mr-1 text-xs sm:text-sm md:text-base lg:text-lg" />{" "}
+            {author} on {new Date(published_date).toLocaleDateString()} |{" "}
+            <FaClock className="mx-1 text-xs sm:text-sm md:text-base lg:text-lg" />{" "}
+            {reading_time} read
           </p>
 
           {/* Blog Content */}
@@ -51,7 +56,9 @@ const SingleBlogs = () => {
               </p>
             ))}
           </div>
-          <p className="text-sm text-gray-500 mt-4 text-center lg:text-left">Category: {category}</p>
+          <p className="text-sm text-gray-500 mt-4 text-center lg:text-left">
+            Category: {category}
+          </p>
         </div>
 
         {/* Sidebar */}
