@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const socialLinks = [
     { icon: <FaFacebook />, href: "/", label: "Facebook" },
-    { icon: <FaGithub />, href: "/", label: "Github" },
+    { icon: <FaGithub />, href: "https://github.com/Qaiem", label: "Github" },
     { icon: <FaInstagram />, href: "/", label: "Instagram" },
   ];
 
